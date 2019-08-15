@@ -91,13 +91,15 @@ Route::group([
     Route::get('gname', 'UsersController@gname');
     Route::post('findware', 'UsersController@findware');
 
-//     Route::group([
+    Route::group([
 
-//     'middleware' => 'api',
-//     'prefix' => 'user'
+    'middleware' => 'api',
+    'prefix' => 'pay'
 
-// ], function ($router) {
+], function ($router) {
 
+    Route::get('index', 'PayController@index');
+    Route::get('return', 'PayController@return');
+    Route::get('notify', 'PayController@notify');
 
-
-// });
+});

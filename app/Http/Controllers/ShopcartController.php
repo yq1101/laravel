@@ -77,9 +77,10 @@ class ShopcartController extends Controller
         }
 
         date_default_timezone_set("PRC");
-        $time=time();
+        $time=time().$uid;
+        // var_dump($time);
         $date=date("Y-m-d H:i:s");
-        var_dump($date);
+        // var_dump($date);
         foreach ($array as $k1 => $v1) {
               $price=$v1->price;
               $wtype=$v1->goods_attr_name;
@@ -88,6 +89,7 @@ class ShopcartController extends Controller
               $num=$v1->num;
               $arr=Db::table('orderdetails')->insert(['wid'=>$wid,'wname'=>$wname,'num'=>$num,'price'=>$price,'wtype'=>$wtype,'order_id'=>$time]);
               // var_dump($arr);
+              // $sum+=$num*$price
             
         }
 
@@ -100,7 +102,8 @@ class ShopcartController extends Controller
         }
         $address=implode('-', $bb);
         $arr=Db::table('orders')->insert(['time'=>$date,'status'=>1,'uid'=>$uid,'address'=>$address,'order_id'=>$time]);
-        var_dump($arr);
+        // var_dump($arr);
+        return response()->json($time);
 
     }
 }
